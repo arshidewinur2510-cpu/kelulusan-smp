@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pengumuman Kelulusan Kelas IX</title>
+
+<style>
+*{box-sizing:border-box}
+
+html,body{
+  height:100%;
+}
+
+body{
+  margin:0;
+  font-family:'Segoe UI',Tahoma,sans-serif;
+  background:linear-gradient(270deg,#1a73e8,#4fc3f7,#7e57c2);
+  background-size:600% 600%;
+  animation:bgMove 12s ease infinite;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  padding:20px;
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+}
+
+@keyframes bgMove{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+.card{
+  position:relative;
+  width:100%;
+  max-width:560px;
+  background:rgba(255,255,255,.95);
+  border-radius:22px;
+  padding:36px 30px 26px;
+  box-shadow:0 30px 60px rgba(0,0,0,.25);
+}
+
+/* BADGE */
+.badge{
+  position:absolute;
+  top:-18px;
+  left:50%;
+  transform:translateX(-50%);
+  background:linear-gradient(135deg,#ff9800,#ff5722);
+  color:#fff;
+  padding:8px 18px;
+  border-radius:20px;
+  font-weight:bold;
+  box-shadow:0 10px 20px rgba(0,0,0,.25);
+}
+
+/* LOGO */
+.logos{
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  gap:26px;
+  margin-bottom:10px;
+}
+.logos img{height:60px}
+.logo-tengah{height:75px}
+
+/* HEADER */
+.header{text-align:center}
+.header h2{margin:0;font-size:18px}
+.header h1{margin:6px 0;color:#1a3d7c}
+.header p{margin:0;font-size:14px;color:#555}
+
+/* COUNTDOWN */
+.countdown-box{
+  margin-top:22px;
+  padding:18px;
+  border-radius:16px;
+  background:linear-gradient(135deg,#fff3e0,#ffe0b2);
+  text-align:center;
+  font-weight:bold;
+  color:#e65100;
+}
+.countdown{
+  margin-top:8px;
+  font-size:20px;
+}
+
+/* FORM */
+.form{display:none}
+label{font-weight:600;margin-top:16px;display:block}
+input{
+  width:100%;
+  padding:13px;
+  margin-top:6px;
+  border-radius:10px;
+  border:1px solid #ccc;
+  font-size:16px;
+}
+button{
+  margin-top:18px;
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:14px;
+  background:linear-gradient(135deg,#43a047,#1b5e20);
+  color:#fff;
+  font-size:18px;
+  font-weight:bold;
+  cursor:pointer;
+}
+
+/* HASIL */
+.hasil{
+  margin-top:22px;
+  padding:20px;
+  border-radius:16px;
+  background:linear-gradient(135deg,#e3f2fd,#fce4ec);
+}
+.status-lulus{
+  margin-top:10px;
+  padding:12px;
+  border-radius:14px;
+  background:linear-gradient(135deg,#66bb6a,#2e7d32);
+  color:#fff;
+  font-size:20px;
+  font-weight:bold;
+  text-align:center;
+}
+.status-tidak{
+  margin-top:10px;
+  padding:12px;
+  border-radius:14px;
+  background:linear-gradient(135deg,#ef5350,#b71c1c);
+  color:#fff;
+  font-size:20px;
+  font-weight:bold;
+  text-align:center;
+}
+.tidak-ditemukan{
+  margin-top:16px;
+  text-align:center;
+  color:#b71c1c;
+  font-weight:bold;
+}
+
+footer{
+  margin-top:18px;
+  text-align:center;
+  font-size:12px;
+  color:#777;
+}
+
+/* CONFETTI */
+.confetti{
+  position:fixed;
+  width:10px;
+  height:10px;
+  top:-10px;
+  animation:fall 3s linear infinite;
+}
+@keyframes fall{
+  to{transform:translateY(110vh) rotate(360deg)}
+}
+
+/* ======================
+   RESPONSIVE OTOMATIS
+   ====================== */
+@media(max-width:768px){
+  body{
+    align-items:flex-start;
+    padding-top:20px;
+  }
+  .card{
+    padding:28px 20px;
+  }
+  .logos img{height:48px}
+  .logo-tengah{height:60px}
+  .header h1{font-size:20px}
+  .header h2{font-size:16px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <div class="badge">🎉 Pengumuman Resmi</div>
+
+  <div class="logos">
+    <img src="logo1.png">
+    <img src="logo2.png" class="logo-tengah">
+    <img src="logo3.png">
+  </div>
+
+  <div class="header">
+    <h2>Pengumuman Kelulusan Kelas IX</h2>
+    <h1>UPT SPF SMP NEGERI 11 MAKASSAR</h1>
+    <p>Tahun Pelajaran 2025 / 2026</p>
+  </div>
+
+  <!-- COUNTDOWN -->
+  <div id="countdownBox" class="countdown-box">
+    🔒 Pengumuman akan dibuka dalam
+    <div id="countdown" class="countdown"></div>
+  </div>
+
+  <!-- FORM -->
+  <div id="formKelulusan" class="form">
+    <label>NISN</label>
+    <input type="text" id="nisn">
+
+    <label>Tanggal Lahir</label>
+    <input type="date" id="tglLahir">
+
+    <button onclick="cekKelulusan()">🎓 Cek Kelulusan</button>
+    <div id="output"></div>
+  </div>
+
+  <footer>© Sekolah Anda • Sistem Kelulusan Online</footer>
+</div>
+
+<script>
+/* ======================
+   ATUR WAKTU BUKA
+   ====================== */
+const WAKTU_BUKA = new Date("2026-06-02T10:00:00");
+
+/* DATA SISWA */
+const dataSiswa=[
+ {nama:"Andi Pratama",nis:"12345",nisn:"0071234567",tempatLahir:"Makassar",tanggalLahir:"2009-05-12",status:"LULUS"},
+ {nama:"Siti Aisyah",nis:"12346",nisn:"0077654321",tempatLahir:"Gowa",tanggalLahir:"2009-08-20",status:"TIDAK LULUS"}
+];
+
+/* COUNTDOWN */
+const box=document.getElementById("countdownBox");
+const form=document.getElementById("formKelulusan");
+const cd=document.getElementById("countdown");
+
+function cekWaktu(){
+  const now=new Date();
+  if(now < WAKTU_BUKA){
+    box.style.display="block";
+    form.style.display="none";
+
+    const s=Math.floor((WAKTU_BUKA-now)/1000);
+    const h=Math.floor(s/3600);
+    const m=Math.floor((s%3600)/60);
+    const d=s%60;
+    cd.innerHTML=`${h} jam ${m} menit ${d} detik`;
+  }else{
+    box.style.display="none";
+    form.style.display="block";
+  }
+}
+setInterval(cekWaktu,1000);
+cekWaktu();
+
+/* CONFETTI */
+function confettiEffect(){
+  for(let i=0;i<40;i++){
+    const c=document.createElement("div");
+    c.className="confetti";
+    c.style.left=Math.random()*100+"vw";
+    c.style.backgroundColor=`hsl(${Math.random()*360},100%,50%)`;
+    c.style.animationDuration=2+Math.random()*3+"s";
+    document.body.appendChild(c);
+    setTimeout(()=>c.remove(),5000);
+  }
+}
+
+/* CEK KELULUSAN */
+function cekKelulusan(){
+  const out=document.getElementById("output");
+  const s=dataSiswa.find(x=>x.nisn===nisn.value && x.tanggalLahir===tglLahir.value);
+
+  if(s){
+    const statusHTML = s.status==="LULUS"
+      ? `<div class="status-lulus">🎉 SELAMAT, ANDA DINYATAKAN LULUS 🎉</div>`
+      : `<div class="status-tidak">❌ ANDA DINYATAKAN TIDAK LULUS</div>`;
+
+    out.innerHTML=`
+      <div class="hasil">
+        <p><b>Nama:</b> ${s.nama}</p>
+        <p><b>NIS:</b> ${s.nis}</p>
+        <p><b>NISN:</b> ${s.nisn}</p>
+        <p><b>Tempat Lahir:</b> ${s.tempatLahir}</p>
+        <p><b>Tanggal Lahir:</b> ${s.tanggalLahir}</p>
+        ${statusHTML}
+      </div>
+    `;
+
+    if(s.status==="LULUS") confettiEffect();
+  }else{
+    out.innerHTML=`<p class="tidak-ditemukan">❗ Data tidak ditemukan</p>`;
+  }
+
+  out.scrollIntoView({behavior:"smooth",block:"start"});
+}
+</script>
+
+</body>
+</html>
